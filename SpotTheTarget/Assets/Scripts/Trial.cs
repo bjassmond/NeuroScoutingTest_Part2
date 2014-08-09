@@ -36,6 +36,7 @@ public class Trial : MonoBehaviour {
 	public float timeBetween = 1f;
 
 	List<Color> objectColors = new List<Color>();
+	int targetSpot = -1;
 	int currentObject = -1;
 	float currentObjectTime = 0f;
 	int timesSpacePressed = 0;
@@ -67,9 +68,9 @@ public class Trial : MonoBehaviour {
 				trialColorPool[Random.Range(0, trialColorPool.Count)]);
 		}
 
-		int targetSpot = Random.Range(0, numberToShow + 1) - 1;
+		targetSpot = Random.Range(0, numberToShow + 1) - 1;
 
-		if (targetSpot > 0) objectColors[targetSpot] = targetColor;
+		if (targetSpot >= 0) objectColors[targetSpot] = targetColor;
 	}
 
 	/* Method		: void Update ()
@@ -87,7 +88,7 @@ public class Trial : MonoBehaviour {
 
 		if (spaceHit) {
 			timesSpacePressed += 1;
-			lastObjectSpacePressed = currentObject + 1;
+			lastObjectSpacePressed = currentObject;
 			timeOfSpacePressed = currentObjectTime;
 		}
 	}
@@ -138,12 +139,17 @@ public class Trial : MonoBehaviour {
 		}
 
 		finished = true;
-
-		Debug.Log("Times space pressed: " + timesSpacePressed + ", Chosen Object: " + lastObjectSpacePressed +
-		       ", Time to Choose Object: " + timeOfSpacePressed + "s");
+		print (targetSpot + ", " + lastObjectSpacePressed + ", " + timesSpacePressed + ", " + timeOfSpacePressed + ", " + timeOfSpacePressed);
 	}
 
 	/* -- Get/Sets ---------------------------------------------------------- */
 
 	public bool isFinished() {return finished;}
+	public bool shotHitTarget() {return lastObjectSpacePressed == targetSpot;}
+	public int getTargetSpot() {return targetSpot;}
+	public int getTimesSpacePressed() {return timesSpacePressed;}
+	public int getLastObjectSpacePressed() {return lastObjectSpacePressed;}
+	public float getTimeOfSpacePressed() {return timeOfSpacePressed;}
+
+
 }

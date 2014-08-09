@@ -30,9 +30,7 @@ public class TrialManager : MonoBehaviour {
 	public int numberOfTrials;
 	public List<Color> colorPool = new List<Color>();
 
-	public List<Trial> trialList = new List<Trial>();
-	public TextMesh targetText;
-	public SpriteRenderer target;
+	List<Trial> trialList = new List<Trial>();
 
 
 	/* -- Methods ----------------------------------------------------------- */
@@ -68,7 +66,9 @@ public class TrialManager : MonoBehaviour {
 	/* Method		: void OnLevelWasLoaded(int level)
 	 *
 	 * Description	: Default method that runs when a level is loaded. Sets
-	 * 					up the trials to run and then runs them.
+	 * 					up the trials to run and then runs them if the 
+	 * 					level is for trials, and outputs stats if it is the
+	 * 					level for results.
 	 *
 	 * Parameters	: int level	- the level that was loaded's index
 	 *
@@ -77,8 +77,8 @@ public class TrialManager : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		if (level == 1) {
-			targetText = GameObject.FindObjectOfType<TextMesh>();
-			target = GameObject.FindObjectOfType<SpriteRenderer>();
+			TextMesh targetText = GameObject.FindObjectOfType<TextMesh>();
+			SpriteRenderer target = GameObject.FindObjectOfType<SpriteRenderer>();
 			
 			for(int i = 0; i < numberOfTrials; i++) {
 				int colorChoice = Random.Range(0, colorPool.Count);
@@ -94,6 +94,10 @@ public class TrialManager : MonoBehaviour {
 			}
 
 			StartCoroutine_Auto(runTrials());
+		}
+		else if (level == 2) {
+			Stats stats = GameObject.FindObjectOfType<Stats>();
+			stats.loadStats(trialList);
 		}
 	}
 
@@ -112,7 +116,8 @@ public class TrialManager : MonoBehaviour {
 			while(!trialList[i].isFinished())
 				yield return new WaitForEndOfFrame();
 
-			yield return new WaitForSeconds(3f);
+			yield return new WaitForSeconds(2f);
 		}
+		Application.LoadLevel("Results");
 	}
 }
