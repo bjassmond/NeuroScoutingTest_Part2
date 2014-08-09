@@ -48,26 +48,28 @@ public class Stats : MonoBehaviour {
 		int incorrect = 0;
 		int noShot = 0;
 		float avgShots = 0f;
+		float trialsWithShots = 0f;
 		float avgTime = 0f;
 
 		foreach (Trial t in trials) {
 			if (t.getTimesSpacePressed() > 0) {
 				if (t.shotHitTarget()) correct++;
 				else incorrect++;
+
+				avgShots += t.getTimesSpacePressed();
+				avgTime += t.getTimeOfSpacePressed();
+				trialsWithShots += 1;
 			}
 			else {
 				if (t.getTargetSpot() >= 0) noShot++;
 				else correct++;
 			}
-
-			avgShots += t.getTimesSpacePressed();
-			avgTime += t.getTimeOfSpacePressed();
 		}
 
 		print (avgShots + ", " + avgTime);
 
-		avgShots = avgShots * trials.Count;
-		avgTime = avgTime / trials.Count;
+		avgShots /= trialsWithShots;
+		avgTime /= trialsWithShots;
 
 		stats[2].text = correct.ToString();
 		stats[3].text = incorrect.ToString();

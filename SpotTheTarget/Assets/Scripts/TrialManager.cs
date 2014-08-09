@@ -89,6 +89,7 @@ public class TrialManager : MonoBehaviour {
 				Trial trial = GameObject.Instantiate(trialPrefab) as Trial;
 				trial.setUpTrial(targetText, target, targetColor, 
 				                 remainingColors);
+				trial.gameObject.SetActive(false);
 				
 				trialList.Add (trial);
 			}
@@ -111,11 +112,13 @@ public class TrialManager : MonoBehaviour {
 	 */
 	IEnumerator runTrials() {
 		for (int i = 0; i < trialList.Count; i++) {
+			trialList[i].gameObject.SetActive(true);
 			trialList[i].startTrial();
 
 			while(!trialList[i].isFinished())
 				yield return new WaitForEndOfFrame();
 
+			trialList[i].gameObject.SetActive(false);
 			yield return new WaitForSeconds(2f);
 		}
 		Application.LoadLevel("Results");
