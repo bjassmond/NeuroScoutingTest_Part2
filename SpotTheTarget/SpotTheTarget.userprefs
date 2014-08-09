@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Trial.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ButtonAction_StartTrials.cs">
     <Files>
       <File FileName="Assets\Scripts\TrialManager.cs" Line="43" Column="30" />
       <File FileName="Assets\Scripts\Trial.cs" Line="88" Column="3" />
-      <File FileName="Assets\Scripts\ButtonAction_StartTrials.cs" Line="46" Column="50" />
+      <File FileName="Assets\Scripts\ButtonAction_StartTrials.cs" Line="27" Column="2" />
       <File FileName="Assets\Scripts\Stats.cs" Line="69" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>

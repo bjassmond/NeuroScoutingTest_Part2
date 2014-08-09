@@ -139,7 +139,6 @@ public class Trial : MonoBehaviour {
 		}
 
 		finished = true;
-		print (targetSpot + ", " + lastObjectSpacePressed + ", " + timesSpacePressed + ", " + timeOfSpacePressed + ", " + timeOfSpacePressed);
 	}
 
 	/* -- Get/Sets ---------------------------------------------------------- */
