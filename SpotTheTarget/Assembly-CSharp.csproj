@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Button.cs" />
      <Compile Include="Assets\Scripts\ButtonAction.cs" />
      <Compile Include="Assets\Scripts\ButtonAction_IterateNumber.cs" />
+     <Compile Include="Assets\Scripts\ButtonAction_MainMenu.cs" />
      <Compile Include="Assets\Scripts\ButtonAction_StartTrials.cs" />
      <Compile Include="Assets\Scripts\Stats.cs" />
      <Compile Include="Assets\Scripts\Trial.cs" />
