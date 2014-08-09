@@ -1,0 +1,46 @@
+An object is shown on the screen for 2 seconds and then disappears. We call
+this object the target. After the target has disappeared, a series of 6 objects
+will be presented, one at a time, each being shown for 2 seconds with a 1
+second delay between them. The user is expected to press the spacebar when they
+see the object that matches the target pattern.
+
+The game should let you choose how many trials you'd like to play, and based on
+this, randomly choose in which position of the 6-object series the target will
+be. In some trials it should not show the target at all.
+
+The game should allow for multiple responses ("that was it… oh crap, no wait,
+THAT was it").
+
+The scoring should be based on accuracy (if they say it was a match when it was
+vs. when it wasn't) and how fast they recognized the target and hit the
+spacebar (reaction time). How these are combined is up to you.
+
+At the end of the trials the game should show a screen telling the player how
+they did and giving them feedback and interesting statistics.
+
+You can make the objects whatever you'd like. If you need a theme for them,
+remember we are a sports company.
+
+Things we're looking for in your game: Creative solutions to unspecified parts
+of the problem (scoring, art, gameplay, feedback), and good coding and
+documentation practices. Going above and beyond what the specification calls
+for is a good thing but don't overengineer/overcomplicate things. We are fans
+of simplicity!
+
+For your submission, we'd like to get a zipped git repository that includes the
+code for the script (you can break it up in multiple files if you want to) along
+with a README file that contains:
+- Unity3D project in C# (no need to send an executable).
+- README file documenting the rules of the game, how the project is organized,
+how the code works, how the scoring works, and any other interesting or useful
+things you can think of for us to take into consideration.
+
+The purpose of getting the git repository is we'd like to see how you work
+through a project. We're big believers of commit early, commit often, and also 
+good commit messages, and getting a glimpse into the commit history that you
+did in creating this project is very valuable to this interview. 
+
+And don't worry if you have simple commits like "fix typo" or "deleted the
+wrong files", or commits where you were testing things out or getting familiar
+with some python package, our repositories are full of those (and even more
+embarrasing things!)
