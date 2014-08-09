@@ -35,27 +35,32 @@ public class Trial : MonoBehaviour {
 	public float timeUp = 2f;
 	public float timeBetween = 1f;
 
+	List<Color> objectColors = new List<Color>();
 	int currentObject = -1;
 	float currentObjectTime = 0f;
 	int timesSpacePressed = 0;
 	int lastObjectSpacePressed = -1;
 	float timeOfSpacePressed = 0;
-
+	bool finished = false;
 	
 	/* -- Methods ----------------------------------------------------------- */
 
 
-	/* Method		: void Start ()
+	/* Method		: public void setUpTrial ((TextMesh tt, SpriteRenderer t, 
+	 * 					Color tc, List<Color> tcp))
 	 *
-	 * Description	: Default initialization, called on second pass when 
-	 * 					initialized. Sets up and runs trial.
+	 * Description	: Sets up the trial with the target and order of objects 
+	 * 					to show.
 	 *
 	 * Parameters	: void
 	 *
 	 * Returns		: void
 	 */
-	void Start () {
-		List<Color> objectColors = new List<Color>();
+	public void setUpTrial (TextMesh tt, SpriteRenderer t, Color tc, List<Color> tcp) {
+		targetText = tt;
+		target = t;
+		targetColor = tc;
+		trialColorPool = tcp;
 
 		for (int i = 0; i < numberToShow; i++) {
 			objectColors.Add(
@@ -65,8 +70,6 @@ public class Trial : MonoBehaviour {
 		int targetSpot = Random.Range(0, numberToShow + 1) - 1;
 
 		if (targetSpot > 0) objectColors[targetSpot] = targetColor;
-
-		StartCoroutine_Auto(runTrial(objectColors));
 	}
 
 	/* Method		: void Update ()
@@ -89,7 +92,19 @@ public class Trial : MonoBehaviour {
 		}
 	}
 
-	/* Method		: IEnumerator runTrial(List<Color> colors)
+	/* Method		: public void startTrial ()
+	 *
+	 * Description	: Starts the trial.
+	 *
+	 * Parameters	: Trial t	- The trial to run
+	 *
+	 * Returns		: void
+	 */
+	public void startTrial() {
+		StartCoroutine_Auto(runTrial());
+	}
+
+	/* Method		: public IEnumerator runTrial()
 	 *
 	 * Description	: Runs the trial, displaying the target and it's text
 	 * 					first, hiding them, and then showing the
@@ -101,7 +116,7 @@ public class Trial : MonoBehaviour {
 	 *
 	 * Returns		: void
 	 */
-	IEnumerator runTrial(List<Color> colors) {
+	public IEnumerator runTrial() {
 		target.color = targetColor;
 
 		target.gameObject.SetActive(true);
@@ -114,7 +129,7 @@ public class Trial : MonoBehaviour {
 		for (int i = 0; i < numberToShow; i++) {
 			currentObject = i;
 			currentObjectTime = 0f;
-			target.color = colors[i];
+			target.color = objectColors[i];
 
 			target.gameObject.SetActive(true);
 			yield return new WaitForSeconds(timeUp);
@@ -122,7 +137,13 @@ public class Trial : MonoBehaviour {
 			yield return new WaitForSeconds(timeBetween);
 		}
 
-		print ("Times space pressed: " + timesSpacePressed + ", Chosen Object: " + lastObjectSpacePressed +
+		finished = true;
+
+		Debug.Log("Times space pressed: " + timesSpacePressed + ", Chosen Object: " + lastObjectSpacePressed +
 		       ", Time to Choose Object: " + timeOfSpacePressed + "s");
 	}
+
+	/* -- Get/Sets ---------------------------------------------------------- */
+
+	public bool isFinished() {return finished;}
 }
