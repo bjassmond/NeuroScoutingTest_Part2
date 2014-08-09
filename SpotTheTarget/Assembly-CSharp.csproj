@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Button.cs" />
      <Compile Include="Assets\Scripts\ButtonAction.cs" />
      <Compile Include="Assets\Scripts\ButtonAction_IterateNumber.cs" />
+     <Compile Include="Assets\Scripts\Trial.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
