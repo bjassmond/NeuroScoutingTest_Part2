@@ -27,6 +27,8 @@ public class ButtonAction_IterateNumber : ButtonAction {
 	
 	[SerializeField] TextMesh text;
 	[SerializeField] int interval = 1;
+	[SerializeField] int min = 0;
+	[SerializeField] int max = 1000;
 	
 	
 	/* -- Methods ----------------------------------------------------------- */
@@ -42,7 +44,7 @@ public class ButtonAction_IterateNumber : ButtonAction {
 	 * Returns		: void
 	 */
 	public override void runAction() {
-		text.text = (int.Parse(text.text) + interval).ToString();
+		text.text = (Mathf.Clamp(int.Parse(text.text) + interval, min, max)).ToString();
 	}
 	
 }
