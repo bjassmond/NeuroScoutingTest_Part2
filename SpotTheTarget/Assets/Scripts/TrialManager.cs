@@ -40,7 +40,7 @@ public class TrialManager : MonoBehaviour {
 	 *
 	 * Description	: Default initialization, called on second pass when 
 	 * 					initialized. Indicates this should not be destroyed
-	 * 					when changing levels.
+	 * 					when changing levels and goes to the main menu.
 	 *
 	 * Parameters	: void
 	 *
@@ -48,11 +48,13 @@ public class TrialManager : MonoBehaviour {
 	 */
 	void Start() {
 		DontDestroyOnLoad(this);
+		Application.LoadLevel("MainMenu");
 	}
 
 	/* Method		: public void startTrials(int trialCount)
 	 *
-	 * Description	: Sets the number of trials to run and changes scenes.
+	 * Description	: Sets the number of trials to run, clears the trial
+	 * 					list, and changes scenes.
 	 *
 	 * Parameters	: int trialCount	- Number of trials to run
 	 *
@@ -60,6 +62,7 @@ public class TrialManager : MonoBehaviour {
 	 */
 	public void startTrials(int trialCount) {
 		numberOfTrials = trialCount;
+		trialList.Clear();
 		Application.LoadLevel("Trials");
 	}
 
@@ -76,7 +79,7 @@ public class TrialManager : MonoBehaviour {
 	 */
 
 	void OnLevelWasLoaded(int level) {
-		if (level == 1) {
+		if (Application.loadedLevelName == "Trials") {
 			TextMesh targetText = GameObject.FindObjectOfType<TextMesh>();
 			SpriteRenderer target = GameObject.FindObjectOfType<SpriteRenderer>();
 			
@@ -96,7 +99,7 @@ public class TrialManager : MonoBehaviour {
 
 			StartCoroutine_Auto(runTrials());
 		}
-		else if (level == 2) {
+		else if (Application.loadedLevelName == "Results") {
 			Stats stats = GameObject.FindObjectOfType<Stats>();
 			stats.loadStats(trialList);
 		}

@@ -66,15 +66,40 @@ public class Stats : MonoBehaviour {
 			}
 		}
 
-		print (avgShots + ", " + avgTime);
-
-		avgShots /= trialsWithShots;
-		avgTime /= trialsWithShots;
+		if (trialsWithShots > 0) {
+			avgShots /= trialsWithShots;
+			avgTime /= trialsWithShots;
+		}
 
 		stats[2].text = correct.ToString();
 		stats[3].text = incorrect.ToString();
 		stats[4].text = noShot.ToString();
 		stats[5].text = avgShots.ToString();
 		stats[6].text = avgTime.ToString();
+
+		string feedback = "";
+
+		float correctWrongRatio = correct/trials.Count;
+
+		if (correctWrongRatio > .9f) feedback += "You are very accurate,\n";
+		else if (correctWrongRatio > .8f) feedback += "You are accurate,\n";
+		else if (correctWrongRatio > .7f) feedback += "You are fairly accurate,\n";
+		else if (correctWrongRatio > .5f) feedback += "You are sorta accurate,\n";
+		else feedback += "You are inaccurate,\n";
+
+		if (avgShots < 1.1f) feedback += "very sure of your shot,\n";
+		else if (avgShots < 1.5f) feedback += "sure of your shot,\n";
+		else if (avgShots < 2f) feedback += "fairly sure of your shot,\n";
+		else if (avgShots < 3f) feedback += "sorta sure of your shot,\n";
+		else if (avgShots < 1.5f) feedback += "not sure of your shot,\n";
+
+		if (avgTime < .5f) feedback += "and have very quick fingers.";
+		else if (avgTime < .6f) feedback += "and have quick fingers.";
+		else if (avgTime < .75f) feedback += "and have fairly quick fingers.";
+		else if (avgTime < 1) feedback += "and have decent fingers.";
+		else if (avgTime < 1.5f) feedback += "and have sorta slow fingers.";
+		else feedback += "and slow fingers.";
+
+		stats[7].text = feedback;
 	}
 }

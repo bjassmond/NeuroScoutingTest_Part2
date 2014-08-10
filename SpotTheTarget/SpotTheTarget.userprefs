@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ButtonAction_StartTrials.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Stats.cs">
     <Files>
       <File FileName="Assets\Scripts\TrialManager.cs" Line="43" Column="30" />
-      <File FileName="Assets\Scripts\Trial.cs" Line="88" Column="3" />
+      <File FileName="Assets\Scripts\Trial.cs" Line="95" Column="2" />
       <File FileName="Assets\Scripts\ButtonAction_StartTrials.cs" Line="27" Column="2" />
-      <File FileName="Assets\Scripts\Stats.cs" Line="69" Column="37" />
+      <File FileName="Assets\Scripts\Stats.cs" Line="79" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
